@@ -7,7 +7,7 @@ from src.mcqgenerator.utils import read_file,get_table_date
 
 
 #import necessory packages from langchain
-from langchain.chat_models import ChatOpenAi
+from langchain.chat_models import ChatOpenAI  # Corrected class name
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.chains import SequentialChain
@@ -16,8 +16,7 @@ from langchain.chains import SequentialChain
 load_dotenv()
 
 key=os.getenv("OPENAI_API_KEY")
-llm=ChatOpenAi(openai_api_key=key, model_name="gpt-3.5-turbo",temprature=0.7)
-
+llm = ChatOpenAI(openai_api_key=key, model_name="gpt-3.5-turbo", temperature=0.7)
 template=''' 
 Text:{text}
 You are an expert MCQ maker. Given the above text, it is your job to \
@@ -34,8 +33,7 @@ quiz_generation_prompt = PromptTemplate(
     template=template
     )
 
-
-quiz_chain= LLMChain(llm=llm, prompts=quiz_generation_prompt,output_key="quiz",verbose=True)
+quiz_chain=LLMChain(llm=llm, prompt=quiz_generation_prompt, output_key="quiz", verbose=True)
 
 template2="""
 You are an expert english grammarian and writer. Given a Multiple Choice Quiz for {subject} students.\

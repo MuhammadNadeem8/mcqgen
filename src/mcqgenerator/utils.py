@@ -21,7 +21,8 @@ def read_file(file):
     
 
 
-def get_table_data(quiz_str):
+
+def get_table_date(quiz_str):
     try:
         # Convert quiz from string to dictionary
         quiz_dict = json.loads(quiz_str)
@@ -41,5 +42,8 @@ def get_table_data(quiz_str):
 
     except Exception as e:
         traceback.print_exception(type(e), e, e.__traceback__)
-        return False
+        raise  # Re-raise the exception to stop script execution
+
+
+
 
